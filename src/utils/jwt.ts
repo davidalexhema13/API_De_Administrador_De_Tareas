@@ -1,8 +1,7 @@
 import jwt  from "jsonwebtoken";
 
 
-
-const Secret = process.env.jwt_secret || "secreto";
+const Secret = process.env.JWT_SECRET || "default_secret";
 
 
 export const generarToken =(payload: any) =>

@@ -1,21 +1,13 @@
-type user  = {
-id: number
-name: string;
-email: string;
-password: string;
+import prisma from "../config/db.js";
+
+export const createUser = async (data: {
+  name: string;
+  email: string;
+  password: string;
+}) => {
+  return prisma.user.create({ data });
 };
 
-
-const users: user [] = [];
-
-export const createUser = (User: user) => {
-users.push(User);
-return users
-
-};
-
-export const FindUserbyEmail = (email: string) => {
-
-    return users.find((u) => u.email === email);
-
+export const findUserByEmail = async (email: string) => {
+  return prisma.user.findUnique({ where: { email } });
 };
