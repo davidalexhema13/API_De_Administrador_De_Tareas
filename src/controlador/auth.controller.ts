@@ -1,6 +1,29 @@
 import type { Request, Response } from "express";
 import { registerUser, loginUser } from "../servicios/auth.service.js";
 
+/**
+ * @swagger
+ * /api/auth/register:
+ *   post:
+ *     summary: Registra un nuevo usuario
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [name, email, password]
+ *             properties:
+ *               name: { type: string }
+ *               email: { type: string }
+ *               password: { type: string }
+ *     responses:
+ *       201:
+ *         description: Usuario creado exitosamente
+ *       400:
+ *         description: Error en los datos o email ya registrado
+ */
 export const register = async (req: Request, res: Response) => {
   try {
     const { name, email, password } = req.body;
@@ -11,6 +34,28 @@ export const register = async (req: Request, res: Response) => {
   }
 };
 
+/**
+ * @swagger
+ * /api/auth/login:
+ *   post:
+ *     summary: Inicia sesión y obtiene un token JWT
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [email, password]
+ *             properties:
+ *               email: { type: string }
+ *               password: { type: string }
+ *     responses:
+ *       200:
+ *         description: Login exitoso, devuelve el token
+ *       401:
+ *         description: Credenciales inválidas
+ */
 export const login = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
