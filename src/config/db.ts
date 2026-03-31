@@ -7,7 +7,7 @@
  * @module PrismaConfig
  */
 import { PrismaNeon } from "@prisma/adapter-neon";
-import { PrismaClient } from "@prisma/client/default.js";
+import { PrismaClient } from "@prisma/client";
 import * as dotenv from "dotenv";
 
 // Carga las variables de entorno (.env)
