@@ -1,23 +1,25 @@
 import express from "express";
-import cors from "cors"; 
+import cors from "cors";
 import dotenv from "dotenv";
-import authRoutes from "./api/routes/auth.routes.js"; 
+import swaggerUi from "swagger-ui-express";
+import { swaggerSpec } from "./config/swagger.js";
+import authRoutes from "./api/routes/auth.routes.js";
 import taskRoutes from "./api/routes/tasks.routes.js";
 
-dotenv.config(); // 1. Cargar variables de entorno primero
+dotenv.config();
 
 const app = express();
 
-// 2. MIDDLEWARES GLOBALES (Configuración de la "tubería")
 app.use(cors());
-app.use(express.json()); // <--- Ahora sí, esto procesará el body ANTES de las rutas
+app.use(express.json());
 
-// 3. RUTAS
+app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 app.get("/", (req, res) => {
   res.send("API funcionando correctamente");
 });
 
 app.use("/api/auth", authRoutes);
-app.use("/api/tasks", taskRoutes); // <--- Ahora esta ruta sí recibirá el body procesado
+app.use("/api/tasks", taskRoutes);
 
 export default app;

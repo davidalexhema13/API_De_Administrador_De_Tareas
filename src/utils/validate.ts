@@ -44,5 +44,4 @@ export const taskSchema = {
     fecha_vencimiento: { type: "string", format: "date-time" },
   },
   required: ["title"],
-  additionalProperties: false,
-};
+}; 

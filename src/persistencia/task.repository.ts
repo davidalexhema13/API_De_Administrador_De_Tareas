@@ -2,8 +2,9 @@ import prisma from "../config/db.js";
 
 export const createTask = async (data: {
   title: string;
-  description: string;
+  description?: string;
   status: string;
+  fecha_vencimiento?: Date | null;
   userId: number;
 }) => {
   return prisma.task.create({ data });
