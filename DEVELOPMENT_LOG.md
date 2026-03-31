@@ -61,6 +61,7 @@ Se decidió que todos los controladores, tanto en éxito como en error, devuelva
 ```
 
 Esto evita que el cliente tenga que adivinar la forma de la respuesta según el endpoint. Cualquier consumidor de la API puede manejar todas las respuestas con un único interceptor, simplificando la integración y haciendo la API predecible y profesional.
+
 ---
 
 ##  Retos y Soluciones
@@ -72,3 +73,5 @@ Esto evita que el cliente tenga que adivinar la forma de la respuesta según el 
 | `ajv-formats` generaba error de inicialización en ESM | Se reemplazó por validaciones manuales con `ajv.addFormat()` para compatibilidad total con ESM |
 | `fecha_vencimiento` se almacenaba como `null` o string inválido | Se aplicó conversión explícita `new Date(fecha_vencimiento)` en la capa de servicios antes de la persistencia |
 | Riesgo de exposición de `JWT_SECRET` en arranque incompleto | El Singleton de `EnvConfig` valida su presencia en el constructor y aborta el arranque si no existe |
+| Error `[Object: null prototype]` al iniciar en Railway | Se compiló el proyecto con `tsc` generando un `dist/` y se usó `// @ts-ignore` para el import de `PrismaClient` en Prisma v7 |
+| Railway no encontraba el punto de entrada | Se configuró `main` y `start` en `package.json` apuntando a `dist/server.js` |
