@@ -27,7 +27,7 @@ El proyecto sigue una arquitectura en capas:
 
 1. Clona el repositorio:
 ```bash
-git clone <url-del-repositorio>
+git clone <https://github.com/davidalexhema13/API_De_Administrador_De_Tareas.git>
 cd GestionDeTareas
 ```
 
