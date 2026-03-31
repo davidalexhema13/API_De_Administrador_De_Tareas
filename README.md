@@ -63,11 +63,28 @@ npx prisma migrate dev
 npm run dev
 ```
 
+
+
 El servidor correrá en `http://localhost:3000`
 
 ## Documentación
 
 Swagger disponible en: `http://localhost:3000/api/docs`
+
+
+
+## Testing
+
+Las pruebas de integración están escritas con **Vitest** y **Supertest**.
+
+Para ejecutar las pruebas:
+```bash
+npm test
+```
+
+Las pruebas cubren los endpoints de autenticación:
+- POST /api/auth/register — registro de usuario
+- POST /api/auth/login — credenciales incorrectas
 
 ## Endpoints
 
